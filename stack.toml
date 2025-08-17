@@ -1,0 +1,37 @@
+[[stack]]
+name = "komodo-op"
+tags = ["infrastructure", "1password-connect", "prerequisite"]
+
+[stack.config]
+server = "home-server"
+poll_for_updates = true
+auto_update = true
+destroy_before_deploy = true
+git_account = "brumi1024"
+repo = "brumi1024/komodo-op-stack"
+branch = "main"
+reclone = true
+file_paths = [
+    "docker-compose.yaml",
+    "compose.override.yaml",
+]
+
+environment = """
+KOMODO_HOST=http://host.docker.internal:9120
+KOMODO_API_KEY=[[KOMODO_API_KEY]]
+KOMODO_API_SECRET=[[KOMODO_API_SECRET]]
+OP_SERVICE_ACCOUNT_TOKEN=[[OP_SERVICE_ACCOUNT_TOKEN]]
+OP_VAULT=[[OP_VAULT_UUID]]
+SYNC_INTERVAL=30s
+LOG_LEVEL=INFO
+"""
+
+[[resource_sync]]
+name = "komodo-op-sync"
+tags = ["infrastructure", "1password-connect", "sync"]
+
+[resource_sync.config]
+repo = "brumi1024/komodo-op-stack"
+branch = "main"
+git_account = "brumi1024"
+resource_path = ["stack.toml"]

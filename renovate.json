@@ -1,0 +1,41 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base"
+  ],
+  "schedule": ["before 6am"],
+  "timezone": "America/New_York",
+  "labels": ["dependencies"],
+  "automerge": false,
+  "prConcurrentLimit": 3,
+  "packageRules": [
+    {
+      "description": "Track komodo-op upstream docker-compose.yaml",
+      "matchFiles": ["docker-compose.yaml"],
+      "matchManagers": ["regex"],
+      "matchStrings": [
+        "image: (?<depName>ghcr\\.io/0dragosh/komodo-op):(?<currentValue>.*?)\\s",
+        "image: (?<depName>1password/connect-api):(?<currentValue>.*?)\\s",
+        "image: (?<depName>1password/connect-sync):(?<currentValue>.*?)\\s"
+      ],
+      "datasourceTemplate": "docker"
+    },
+    {
+      "description": "Auto-merge Docker image updates",
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    }
+  ],
+  "regexManagers": [
+    {
+      "description": "Monitor upstream komodo-op compose file changes",
+      "fileMatch": ["^docker-compose\\.yaml$"],
+      "matchStrings": [
+        "# renovate: datasource=github-releases depName=0dragosh/komodo-op\\s+# version: (?<currentValue>.*?)\\s"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "0dragosh/komodo-op"
+    }
+  ]
+}

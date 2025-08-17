@@ -1,0 +1,15 @@
+# Override file for environment-specific configuration
+# This file overrides the base docker-compose.yaml with Komodo environment variables
+
+services:
+  komodo-op:
+    environment:
+      # Override with actual Komodo configuration
+      KOMODO_HOST: "${KOMODO_HOST}"
+      KOMODO_API_KEY: "${KOMODO_API_KEY}"
+      KOMODO_API_SECRET: "${KOMODO_API_SECRET}"
+      OP_SERVICE_ACCOUNT_TOKEN: "${OP_SERVICE_ACCOUNT_TOKEN}"
+      OP_VAULT: "${OP_VAULT}"
+      SYNC_INTERVAL: "${SYNC_INTERVAL:-30s}"
+      LOG_LEVEL: "${LOG_LEVEL:-INFO}"
+      # OP_CONNECT_HOST is fine as-is since it's internal Docker networking
