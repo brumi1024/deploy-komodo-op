@@ -17,7 +17,7 @@ services:
         # Override to use Base64-encoded credentials from Komodo variable
         OP_SESSION: "[[OP_CREDENTIALS_BASE64]]"
   komodo-op:
-    environment: !override
+    environment:
       # Override with actual Komodo configuration
       KOMODO_HOST: "${KOMODO_HOST}"
       KOMODO_API_KEY: "${KOMODO_API_KEY}"
