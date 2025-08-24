@@ -3,7 +3,7 @@
 
 services:
   komodo-op:
-    environment:
+    environment: !override
       # Override with actual Komodo configuration
       KOMODO_HOST: "${KOMODO_HOST}"
       KOMODO_API_KEY: "${KOMODO_API_KEY}"
