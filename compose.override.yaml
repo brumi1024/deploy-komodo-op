@@ -3,14 +3,14 @@
 
 services:
   op-connect-api:
-      volumes:
+      volumes: !override
         # Remove the credentials file mount by explicitly setting volumes
         - "op-connect-data:/home/opuser/.op/data"
       environment:
         # Override to use Base64-encoded credentials from Komodo variable
         OP_SESSION: "${OP_CREDENTIALS_BASE64}"
   op-connect-sync:
-      volumes:
+      volumes: !override
         # Remove the credentials file mount by explicitly setting volumes
         - "op-connect-data:/home/opuser/.op/data"
       environment:
