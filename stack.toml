@@ -1,6 +1,6 @@
 [[stack]]
 name = "komodo-op"
-tags = ["infrastructure", "1password-connect", "prerequisite"]
+tags = ["infrastructure", "1password-connect"]
 
 [stack.config]
 server = "home-server"
@@ -8,7 +8,7 @@ poll_for_updates = true
 auto_update = true
 destroy_before_deploy = true
 git_account = "brumi1024"
-repo = "brumi1024/komodo-op-stack"
+repo = "brumi1024/deploy-komodo-op"
 branch = "main"
 reclone = true
 file_paths = [
@@ -31,7 +31,7 @@ name = "komodo-op-sync"
 tags = ["infrastructure", "1password-connect", "sync"]
 
 [resource_sync.config]
-repo = "brumi1024/komodo-op-stack"
+repo = "brumi1024/deploy-komodo-op"
 branch = "main"
 git_account = "brumi1024"
 resource_path = ["stack.toml"]
