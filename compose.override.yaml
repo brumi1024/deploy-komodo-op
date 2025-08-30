@@ -27,3 +27,5 @@ services:
       SYNC_INTERVAL: "${SYNC_INTERVAL:-30s}"
       LOG_LEVEL: "${LOG_LEVEL:-INFO}"
       # OP_CONNECT_HOST is fine as-is since it's internal Docker networking
+    extra_hosts:
+      - host.docker.internal:host-gateway
