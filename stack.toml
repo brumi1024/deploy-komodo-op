@@ -9,5 +9,4 @@ tags = [
 repo = "brumi1024/deploy-komodo-op"
 git_account = "brumi1024"
 resource_path = ["stack.toml"]
-managed = true
 match_tags = ["sync"]
