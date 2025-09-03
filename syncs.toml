@@ -1,1 +1,13 @@
-## Add resources to get started
+[[resource_sync]]
+name = "komodo-op-sync"
+tags = [
+  "infrastructure",
+  "1password-connect",
+  "sync"
+]
+[resource_sync.config]
+repo = "brumi1024/deploy-komodo-op"
+git_account = "brumi1024"
+resource_path = ["stack.toml"]
+managed = true
+match_tags = ["sync"]
