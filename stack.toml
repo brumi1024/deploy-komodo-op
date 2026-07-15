@@ -17,7 +17,7 @@ file_paths = [
 ]
 
 environment = """
-KOMODO_HOST=http://host.docker.internal:9120
+KOMODO_HOST=https://komodo.bzst.dev
 KOMODO_API_KEY=[[KOMODO_API_KEY]]
 KOMODO_API_SECRET=[[KOMODO_API_SECRET]]
 OP_SERVICE_ACCOUNT_TOKEN=[[OP_SERVICE_ACCOUNT_TOKEN]]
