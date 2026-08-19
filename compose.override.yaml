@@ -31,14 +31,3 @@ services:
       SYNC_INTERVAL: "${SYNC_INTERVAL:-30s}"
       LOG_LEVEL: "${LOG_LEVEL:-INFO}"
       # OP_CONNECT_HOST is fine as-is since it's internal Docker networking
-    # Core publishes 9120 on loopback only, so it is reachable neither through
-    # the host gateway nor from another host. Joining its ingress network and
-    # addressing the container directly is the only private path to it.
-    networks:
-      - default
-      - vps-ingress
-
-networks:
-  vps-ingress:
-    external: true
-    name: vps-ingress
