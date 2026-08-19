@@ -3,6 +3,10 @@
 
 services:
   op-connect-api:
+      # Upstream publishes 8080 on every interface. This stack now runs on the
+      # internet-facing host, where only the loopback binding is defensible.
+      ports: !override
+        - "127.0.0.1:8080:8080"
       volumes: !override
         # Remove the credentials file mount by explicitly setting volumes
         - "op-connect-data:/home/opuser/.op/data"
@@ -27,5 +31,14 @@ services:
       SYNC_INTERVAL: "${SYNC_INTERVAL:-30s}"
       LOG_LEVEL: "${LOG_LEVEL:-INFO}"
       # OP_CONNECT_HOST is fine as-is since it's internal Docker networking
-    extra_hosts:
-      - host.docker.internal:host-gateway
+    # Core publishes 9120 on loopback only, so it is reachable neither through
+    # the host gateway nor from another host. Joining its ingress network and
+    # addressing the container directly is the only private path to it.
+    networks:
+      - default
+      - vps-ingress
+
+networks:
+  vps-ingress:
+    external: true
+    name: vps-ingress
