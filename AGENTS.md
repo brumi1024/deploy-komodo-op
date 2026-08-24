@@ -3,7 +3,8 @@
 Komodo stack for `0dragosh/komodo-op`, which copies a 1Password vault into Komodo global variables.
 `docker-compose.yaml` is upstream unchanged; local changes belong in `compose.override.yaml` and `stack.toml`.
 
-- The bootstrap variables in `README.md` are created by `brumi1024/homelab-infra` (`05_bootstrap_komodo_op.yml`); this stack only consumes them.
+- The bootstrap variables in `README.md` are created during `make bootstrap` in `brumi1024/homelab-infra`; this stack only consumes them.
 - The sync that deploys this repo is defined in `brumi1024/komodo-resource-syncs`.
+- The stack runs on the home Docker host and dials Core's stable public endpoint. Keep it off the Core host, and re-point it whenever Core moves, or variable sync silently stops while every dashboard stays green.
 - Consumers reference synced values as `[[OP__KOMODO__<STACK>__<NAME>]]`, see `brumi1024/komodo-app-stacks`.
 - Use `$komodo-stack-lifecycle` when adding or removing a stack also changes projected 1Password fields or Komodo variables.
