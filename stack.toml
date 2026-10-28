@@ -6,6 +6,8 @@ tags = ["infrastructure", "1password-connect"]
 server = "docker"
 poll_for_updates = true
 auto_update = true
+# A partial redeploy's `down` also removes komodo-op, which depends on op-connect-api, and its `up` never restores it.
+auto_update_all_services = true
 destroy_before_deploy = true
 git_account = "brumi1024"
 repo = "brumi1024/deploy-komodo-op"
